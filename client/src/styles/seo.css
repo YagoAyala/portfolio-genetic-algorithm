@@ -1,0 +1,424 @@
+html, body {
+  height: 100%;
+}
+
+#seo-page {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  font-family: "Mona Sans", "Mona Sans Header Fallback", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-feature-settings: unset;
+  background-color: #010409;
+  padding: 0 0 20px 0;
+}
+
+#seo-page strong {
+  font-weight: bold;
+}
+
+#seo-page input:not(.field) {
+  width: auto;
+}
+
+#seo-page hr {
+  height: 1px;
+  background-color: #ffffff25;
+  border: none;
+}
+
+#seo-page header {
+  padding: 10px 20px 10px 20px;
+  display: flex;
+  align-items: center;
+  margin: 0 0 20px 0;
+  position: relative;
+  z-index: 199;
+  width: calc(100% - 40px);
+  background-color: #01040928;
+}
+
+#seo-page header img {
+  width: 40px;
+}
+
+#seo-page header nav ul {
+  display: flex;
+}
+
+#seo-page header nav ul li {
+  width: auto;
+  list-style-type: none;
+  margin: 5px 0 5px 15px;
+}
+
+#seo-page header nav ul li a,
+#seo-page header nav ul li p {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  padding: 6px;
+  font-weight: 600;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+#seo-page header nav ul li svg {
+  margin: 0 0 0 5px;
+}
+
+#seo-page header nav ul li a:hover,
+#seo-page header nav ul li p:hover {
+  cursor: pointer;
+  opacity: 0.9;
+  background-color: #00ff9595;
+}
+
+#seo-page header nav ul li a:active,
+#seo-page header nav ul li p:active {
+  opacity: 0.8;
+}
+
+#seo-page section {
+  margin: 0 0 40px 0;
+}
+
+#seo-page .screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+#seo-page .screen .banner {
+  position: relative;
+  flex: 1;
+  margin: 0;
+  background: -webkit-linear-gradient(0deg, #3af0a42d, #cb43f12f);
+}
+
+#seo-page .banner .bet {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  flex-wrap: wrap;
+  z-index: 99;
+}
+
+#seo-page .banner .bet p {
+  margin: 0 20px 0 20px;
+  font-size: 40px !important;
+  line-height: 70px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typewriter 2.3s infinite alternate,
+    blink 800ms infinite normal;
+  border-right: 5px solid #fff;
+}
+
+#seo-page .short-presentation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 99;
+  margin: 10px 0 0 0;
+  padding: 0 0 40px 0;
+  box-shadow: 0px 0px 120px 100px #010409;
+}
+
+#seo-page .short-presentation h1 {
+  color: #fff;
+  font-size: 60px !important;
+  line-height: 70px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+#seo-page .short-presentation em {
+  font-style: normal;
+}
+
+#seo-page .short-presentation h1 span {
+  display: inline-block;
+  background: -webkit-linear-gradient(0deg, #3af0a4, #cc43f1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#seo-page .description {
+  width: 80%;
+  margin: 40px auto;
+}
+
+#seo-page .description>p,
+li {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 300;
+  color: #dfdfdf;
+  font-feature-settings: unset;
+  text-align: justify;
+}
+
+#seo-page .description li {
+  margin: 0 0 0 20px;
+}
+
+#seo-page #banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#seo-page #banner img {
+  width: 80%;
+}
+
+#seo-page #product {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+#seo-page #product img {
+  width: 250px;
+  height: 250px;
+  margin: 10px 0 0 25px;
+}
+
+section form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  padding: 50px 0 50px 0;
+}
+
+section form .title {
+  color: #fff;
+  margin: 0 0 20px 0;
+  font-size: 32px;
+}
+
+section form>.button-area {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px 0 10px 0;
+}
+
+section form>.button-area .back {
+  background-color: #5d5d5d;
+}
+
+section form>.button-area .login-back {
+  font-size: 14px;
+  color: #05ac66;
+}
+
+section form>.button-area .login-back:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+section form>.button-area .login-back:active {
+  opacity: 0.8;
+}
+
+section form .data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 10px 0 0 0;
+}
+
+section form .data span {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+section form .data span label.disabled {
+  opacity: 0.4;
+}
+
+section form .data span:last-child {
+  justify-content: center;
+}
+
+section form .data span label {
+  color: #fff;
+  margin: 0 0 10px 0;
+  font-weight: bold;
+}
+
+section form .data span>.field {
+  width: 250px;
+  height: 35px;
+  font-size: 16px;
+}
+
+section form div button {
+  margin: 10px 0 10px 0;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 120%;
+  }
+}
+
+@keyframes blink {
+  from {
+    border-color: #fff;
+  }
+
+  to {
+    border-color: transparent;
+  }
+}
+
+#seo-page footer {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 10px 0;
+}
+
+#seo-page footer p {
+  font-size: 12px;
+  margin: 0 0 0 15px;
+}
+
+#seo-page footer .link {
+  color: #05ac66;
+}
+
+#seo-page footer .link:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+#seo-page footer .link:active {
+  opacity: 0.8;
+}
+
+.scroll-to-top-button {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: #11a668;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  cursor: pointer;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll-to-top-button.visible {
+  display: flex;
+}
+
+@media only screen and (max-width: 480px) {
+  #seo-page header {
+    padding: 20px 5px 20px 5px;
+  }
+
+  #seo-page .description {
+    width: 90%;
+  }
+
+  #seo-page .description li {
+    text-align: left;
+  }
+
+  #seo-page #banner img {
+    width: auto;
+    height: 150px;
+  }
+
+  #seo-page header img {
+    width: 10%;
+  }
+
+  #seo-page #banner {
+    overflow: hidden;
+  }
+
+  #seo-page header nav ul li a, #seo-page header nav ul li p {
+    font-size: 14px;
+    padding: 6px 3px 6px 3px;
+  }
+
+  #seo-page header nav ul li {
+    margin: 5px 0 5px 5px;
+  }
+
+  #seo-page .banner {
+    height: 250px;
+  }
+
+  #seo-page .banner .bet p {
+    font-size: 16px !important;
+  }
+
+  #seo-page #product {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #seo-page #product img {
+    margin: 25px 0 25px 0;
+  }
+
+  section form {
+    width: 100%;
+    padding: 25px 0 50px 0;
+  }
+
+  section form .title {
+    text-align: center;
+  }
+
+  section form .data {
+    grid-template-columns: 1fr;
+  }
+
+  #seo-page footer {
+    flex-direction: column;
+    margin: 0;
+    padding: 20px 20px 0 20px;
+  }
+
+  #seo-page footer p {
+    margin: 0 0 10px 0;
+  }
+}
