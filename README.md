@@ -9,6 +9,8 @@
 - [Trade-offs](#trade-offs)
 - [Diagramas](#diagramas)
 - [Requisitos de Software](#requisitos-de-software)
+  - [Requisitos Funcionais](#requisitos-funcionais)
+  - [Requisitos Não Funcionais](#requisitos-não-funcionais)
 - [Modelagem e Organização](#modelagem-e-organização)
 - [Observabilidade](#observabilidade)
 - [Stacks e Ferramentas](#stacks-e-ferramentas)
@@ -21,180 +23,177 @@
 
 ## Objetivo
 
-Este projeto tem como objetivo desenvolver um sistema que utiliza algoritmos genéticos e redes neurais para analisar, gerar e otimizar sequências numéricas sob diversos critérios estatísticos. O sistema integra dados históricos, regras matemáticas e técnicas de machine learning para sugerir combinações mais robustas. A solução também busca demonstrar princípios de Engenharia de Software, como modularidade, escalabilidade e uso de ferramentas de observabilidade, além do emprego de Web Workers para tarefas intensivas, melhorando a responsividade e a experiência do usuário.
+O projeto visa desenvolver um sistema capaz de otimizar sequências numéricas complexas utilizando algoritmos genéticos (AG) combinados a Redes Neurais (RN) para análise estatística avançada. Tendo como foco a Engenharia de Software, a solução reforça princípios de modularidade, escalabilidade, qualidade de código, e uso de Web Workers para processamento assíncrono. A proposta pode ser aplicada em cenários de otimização combinatória, análise de padrões e suporte a decisões baseadas em dados.
 
 ---
 
 ## Escopo
 
-1. *Otimização por Algoritmo Genético (AG):*  
-   - Geração de combinações numéricas com base em populações iniciais e operadores genéticos (seleção, crossover, mutação).
-   - Critérios de aptidão (fitness) baseados em parâmetros estatísticos e restrições definidas (pares/ímpares, números primos, distribuição, etc.).
+1. *Otimização Combinatória:*  
+   Uso de AG para gerar conjuntos numéricos, ajustar parâmetros (tamanho da população, taxa de mutação, crossover) e avaliar resultados segundo múltiplos critérios estatísticos.
 
-2. *Análise por Rede Neural (RN):*  
-   - Avaliação de sequências utilizando um modelo de rede neural pré-treinado para identificar padrões históricos ou tendências estatísticas.
-   - Uso de uma Rede Neural Convolucional (CNN) adaptada para análise de dados numéricos normalizados.
+2. *Análise via Redes Neurais:*  
+   Emprego de um modelo de Rede Neural Convolucional, pré-treinado e adaptado ao domínio numérico, para classificar padrões, identificar tendências e fornecer métricas de confiança.
 
-3. *Processamento Assíncrono com Web Workers:*  
-   - Separação de cálculos complexos (AG, RN) do thread principal do navegador, evitando bloqueios de UI.
-   - Comunicação via mensagens para monitoramento do progresso de tarefas de otimização ou simulação.
+3. *Processamento Assíncrono (Web Workers):*  
+   Delegação de tarefas computacionalmente intensivas (AG e RN) a Web Workers no frontend, garantindo fluidez na interface e responsividade ao usuário.
 
-4. *Interface e Relatórios Estatísticos:*  
-   - Visualização de métricas, históricos, frequências, percentuais de ocorrência e distribuição estatística.
-   - Interface reativa em React.js, permitindo análise de resultados, envio de feedback e exportação de dados.
+4. *Visualização e Histórico:*  
+   Exibição de relatórios, gráficos estatísticos, histórico de sequências geradas e avaliações qualitativas dos resultados, permitindo análise comparativa e iterações rápidas.
 
 ---
 
 ## Contexto
 
-Este projeto foi desenvolvido com foco em aplicações de Engenharia de Software e técnicas de IA combinadas. O contexto pode ser aplicado a diversos cenários, tais como:
-
-- Otimização combinatória (apostas, seleção de subconjuntos numéricos).
-- Análise preditiva e identificação de padrões por meio de CNN.
-- Suporte a decisões estatísticas em ambientes não determinísticos.
-
-O projeto não se propõe a prever resultados aleatórios com certeza, mas a apresentar um arcabouço de técnicas avançadas (AG + RN) para melhorar o processo de seleção de combinações numéricas e apresentar insights estatísticos.
+Este projeto se insere no contexto de aplicações acadêmicas e industriais que exigem análise estatística avançada, técnicas de IA e otimização. Não se limita a um domínio específico, podendo apoiar decisões informadas em ambientes lotéricos, análise de portfólios, seleção combinatória ou outras situações em que a busca por padrões numéricos complexos seja relevante.
 
 ---
 
 ## Restrições
 
-1. *Limitação de Recursos Computacionais:*  
-   - Execução de algoritmos genéticos e redes neurais pode ser custosa em dispositivos modestos, demandando cuidado na otimização do código e uso de Web Workers.
+1. *Recursos Computacionais Limitados:*  
+   Execução local (tanto no servidor quanto no cliente) pode ser limitada por CPU e memória, exigindo uso criterioso de otimizações e threads dedicadas (Web Workers).
 
-2. *Qualidade dos Dados:*  
-   - A eficácia da rede neural e dos parâmetros genéticos depende da qualidade e quantidade de dados históricos analisados.
-
-3. *Escalabilidade:*  
-   - A complexidade do algoritmo genético cresce com o tamanho da população e número de gerações, exigindo monitoramento de desempenho e eventuais ajustes de parâmetros.
+2. *Qualidade dos Dados de Treino da RN:*  
+   Resultados da RN dependem da qualidade e variedade do dataset utilizado.  
+   
+3. *Parâmetros do AG:*  
+   Ajustar parâmetros de população, número de gerações, limites de tempo, pode exigir experimentação e monitoramento.
 
 ---
 
 ## Trade-offs
 
-- *Complexidade Computacional vs. Qualidade da Solução:*  
-  Aumentar o número de gerações, mutações ou camadas na rede neural pode melhorar a qualidade das sugestões, mas aumenta o tempo de resposta.
+- *Precisão vs. Desempenho:*  
+  Parâmetros mais rigorosos no AG e RN oferecem melhor qualidade, mas aumentam o tempo de execução.
 
-- *Generalização vs. Especialização do Modelo:*  
-  Uma CNN altamente especializada pode ter excelente desempenho em um domínio restrito, mas dificuldade em generalizar para outros contextos.
+- *Generalização vs. Especialização:*  
+  Uma RN mais especializada no conjunto de dados atual pode ter acurácia alta neste domínio, porém menor capacidade de generalização para novos contextos.
 
-- *Uso de Web Workers vs. Simplicidade da Arquitetura:*  
-  O uso de Web Workers melhora a experiência do usuário, mas adiciona complexidade na comunicação entre threads e no gerenciamento do estado.
+- *Complexidade vs. Manutenibilidade:*  
+  Recursos como Web Workers, monitoramento e CI/CD tornam o sistema mais robusto, mas aumentam a complexidade de manutenção.
 
 ---
 
 ## Diagramas
 
-*1. Diagrama de Caso de Uso:*  
-Ilustra as interações do usuário, incluindo:
-- Solicitar geração otimizada via algoritmo genético.
-- Consultar resultados validados pela rede neural.
-- Obter estatísticas e métricas.
+- *Diagrama de Caso de Uso:*  
+  Mostra interações como: Solicitar geração via AG, validar resultados com RN, visualizar estatísticas, histórico e exportar dados.
 
-*2. Diagrama de Arquitetura (Container):*  
-Representa os componentes principais:
-- *Frontend (React):* UI, Web Workers (trabalhando em segundo plano).
-- *Backend (Node.js/Express):* API REST, acesso a datastore, integrações de serviços externos (por exemplo, APIs de dados históricos).
-- *Modelo de IA:* Rede Neural pré-treinada e executada via TensorFlow/JS ou Brain.js.
-- *Banco de Dados (Datastore GCP):* Armazenamento de histórico, parâmetros e configurações.
+- *Diagrama de Arquitetura (Containers):*  
+  Detalha Frontend (React + Web Workers), Backend (Node.js/Express), Datastore (GCP), e interações com serviços externos e modelos de IA.
 
 ---
 
 ## Requisitos de Software
 
-- *Requisitos Funcionais:*
-  - RF01: Permitir a geração de sequências numéricas via algoritmo genético.
-  - RF02: Avaliar e filtrar resultados com base em critérios estatísticos e pelo modelo de rede neural.
-  - RF03: Fornecer histórico de análises e visualizações gráficas.
-  - RF04: Executar cálculos de forma assíncrona (Web Workers).
+### Requisitos Funcionais
 
-- *Requisitos Não Funcionais:*
-  - RNF01: Desempenho adequado, evitando travamentos na UI.
-  - RNF02: Segurança no backend (tokens, autenticação por terceiros).
-  - RNF03: Observabilidade (métricas, logs) para identificação rápida de problemas.
-  - RNF04: Arquitetura modular e escalável, facilitando manutenção e extensibilidade.
+- *RF01:* Permitir a geração de sequências numéricas por Algoritmos Genéticos.  
+- *RF02:* Avaliar sequências utilizando a Rede Neural, filtrando resultados com base em thresholds pré-definidos.  
+- *RF03:* Exibir estatísticas (médias, frequências, distribuição de primos/pares/ímpares) e resultados históricos.  
+- *RF04:* Permitir o usuário definir parâmetros do AG (população, gerações) e visualizar métricas de desempenho.  
+- *RF05:* Oferecer funcionalidades de busca e filtragem no histórico de sequências geradas.  
+- *RF06:* Executar processamento intensivo (AG, RN) de modo assíncrono, não bloqueando a interface.  
+- *RF07:* Suportar autenticação e autorização de usuários por meio de tokens e serviços de terceiros (ex.: Firebase).  
+- *RF08:* Enviar feedback e logs de erros à interface de observabilidade ou dashboards.  
+- *RF09:* Armazenar configurações do usuário, preferências e limites de análises mensais.  
+- *RF10:* Integrar pagamento ou módulos premium (se aplicável), garantindo que certos recursos sejam acessíveis mediante autenticação e quitação de licença.
+
+### Requisitos Não Funcionais
+
+- *RNF01 (Desempenho):* Operações críticas devem ocorrer em <2s de média na maioria dos cenários.  
+- *RNF02 (Segurança):* Dados sensíveis devem ser protegidos (HTTPS, tokens JWT, restrições de acesso).  
+- *RNF03 (Usabilidade):* Interface responsiva, intuitiva e acessível, independente do tamanho da tela.  
+- *RNF04 (Escalabilidade):* Arquitetura modular, permitindo aumentar a capacidade do backend ou adicionar novos algoritmos de IA sem comprometer a estabilidade.  
+- *RNF05 (Manutenibilidade):* Código comentado, testes abrangentes, uso de linting e padronização (ESLint, SonarLint).  
+- *RNF06 (Observabilidade):* Monitoramento de métricas (CPU, latência, erros) via Prometheus/Grafana, logs centralizados e alerta de falhas.  
+- *RNF07 (Portabilidade):* Deploy simplificado em múltiplos ambientes (Docker, GCP).  
+- *RNF08 (Confiabilidade):* Testes unitários, integração contínua (CI) e pipelines que impeçam a entrada de código quebrado no repositório principal.  
+- *RNF09 (Privacidade):* Cumprir normas de privacidade, protegendo informações do usuário conforme leis aplicáveis.
 
 ---
 
 ## Modelagem e Organização
 
-- *Backend (MVC + Serviços):*  
-  Camadas bem definidas (Controladores, Roteadores, Serviços, e Datastore).  
-  Uso de arquitetura clara permite modificar facilmente a lógica do algoritmo genético ou trocar o modelo de RN caso necessário.
+- *Backend (MVC+Services):*  
+  Camadas separadas: Controllers, Routers, Services, Datastore. Facilita troca do modelo RN, ajustes no AG, ou mudança de base de dados.
 
-- *Frontend (Clean Architecture Adaptada):*  
-  Divisão em camadas (Apresentação, Lógica de Negócio e Dados), garantindo independência entre a lógica da aplicação e a UI.
+- *Frontend (Clean Architecture):*  
+  Três camadas (Apresentação, Domínio, Dados) asseguram modularidade. Web Workers são isolados, interagindo via mensagens, simplificando a manutenção do código de IA e AG.
 
-- *Planejamento no Kanban/Trello:*  
-  Tarefas organizadas e priorizadas, mantendo o fluxo de desenvolvimento contínuo.  
-  Decisão estratégica de conversão de modelos, uso de testes unitários e ajustes finos no AG e na CNN.
+- *Gestão de Tarefas (Kanbanize):*  
+  O fluxo de desenvolvimento, atribuição de tarefas, acompanhamento de sprints e priorização de funcionalidades foram organizados no *Kanbanize*, permitindo rastreabilidade e histórico de decisões. Itens de backlog, tarefas em andamento (Doing) e concluídas (Done) são monitoradas, garantindo visibilidade e controle de prazos.
 
 ---
 
 ## Observabilidade
 
-- *Métricas e Logs:*  
-  Prometheus e Grafana podem ser integrados para monitorar latência, uso de CPU/RAM e frequência de requisições.
-- *Acompanhamento de Erros:*  
-  Logs detalhados no backend e frontend, facilitando depuração de problemas.
+- *Logs, Métricas e Alertas:*  
+  Prometheus coleta métricas de uso de CPU, memória e tempo de resposta; Grafana visualiza dados em dashboards customizados; alertas automáticos para identificação rápida de gargalos.
 - *Qualidade de Código:*  
-  Uso de ferramentas como ESLint/SonarLint para garantir padronização e identificar problemas potenciais no código.
+  Integração com SonarLint e ESLint no pipeline, assegurando legibilidade e detectando vulnerabilidades cedo.
 
 ---
 
 ## Stacks e Ferramentas
 
-- *Frontend:* React.js + Hooks, Web Workers
-- *Backend:* Node.js + Express.js
-- *IA:* TensorFlow.js / Brain.js (CNN), Algoritmo Genético implementado em JavaScript
-- *Banco de Dados:* Google Cloud Datastore
-- *Observabilidade:* Prometheus, Grafana (opcional)
-- *CI/CD:* GitHub Actions (testes e integrações contínuas)
+- *Frontend:* React.js, Web Workers, Axios  
+- *Backend:* Node.js + Express  
+- *IA:* TensorFlow.js / Brain.js (CNN), Algoritmo Genético (JS puro)  
+- *Banco de Dados:* Google Cloud Datastore  
+- *Observabilidade:* Prometheus, Grafana  
+- *CI/CD:* GitHub Actions  
+- *Kanbanize:* Gestão ágil das tarefas e backlog
 
 ---
 
 ## Testes
 
 - *Testes Unitários:*  
-  Verificação da lógica do algoritmo genético (mutação, crossover) e da pipeline de dados para a rede neural.
+  Cobrem funções do AG (crossover, mutação, fitness) e camadas do backend.
+  
 - *Testes de Integração:*  
-  Garantem que o backend responde corretamente às requisições do frontend e que o modelo de RN se integra ao fluxo do AG.
+  Garantem comunicação entre frontend, backend, Web Workers e modelo RN.
+
 - *Testes de Desempenho:*  
-  Avaliação do tempo de resposta ao rodar AG e RN simultaneamente, analisando se a arquitetura com Web Workers melhora a usabilidade.
+  Avaliam tempo médio de execução do AG e RN sob diferentes parâmetros.
+
+- *CI/CD:*  
+  Pipelines no GitHub Actions executam testes a cada commit na branch de desenvolvimento, rejeitando merges se a cobertura for insuficiente ou se testes falharem.
 
 ---
 
 ## Modelo de Rede Neural Convolucional
 
 - *Dataset e Pré-Processamento:*  
-  Os dados numéricos são normalizados e, quando necessário, interpretados como vetores de entrada. Técnicas de augmentation e normalização garantem maior robustez do modelo.
+  Dados numéricos normalizados (valores entre 0 e 1), possibilidade de augmentations (permutações controladas) para melhorar robustez.
   
 - *Estrutura da CNN:*  
-  Combinação de camadas convolucionais, pooling e densas, resultando em um classificador robusto para identificar padrões complexos.
+  Camadas convolucionais, pooling e densas otimizadas para detecção de padrões estatísticos.
   
 - *Treinamento e Validação:*  
-  Acompanhamento de métricas como acurácia e perda, uso de early stopping e validação cruzada.  
-  Resultados avaliados para determinar se o modelo gera confiança estatística (por exemplo, somente exibir detalhadamente predições acima de um limiar).
+  Uso de sets de validação, early stopping e análise de métricas (acurácia, loss), garantindo que o modelo seja confiável antes da integração.
 
 ---
 
 ## Instruções de Uso
 
 *Backend:*
-1. Configurar variáveis de ambiente (chaves para Datastore, tokens de autenticação, etc.).
-2. npm install e npm start no diretório do servidor.
-3. A API ficará disponível na porta definida (padrão: 8080).
+1. Configurar .env com chaves para Datastore, tokens de autenticação.
+2. npm install  
+3. npm start  
+4. Acessar API na porta definida, p.ex. http://localhost:8080.
 
 *Frontend:*
-1. npm install e npm start no diretório do cliente.
-2. A aplicação web será acessível em http://localhost:3000.
+1. npm install  
+2. npm start  
+3. Acessar http://localhost:3000 para utilizar a UI.  
 
-A partir da interface, o usuário pode solicitar geração de sequências (AG), aguardar a análise (RN) e visualizar estatísticas. O uso de Web Workers é transparente, garantindo resposta fluida.
+Parâmetros do AG e RN podem ser ajustados via interface. Acompanhamento de status e logs em dashboards de observabilidade (Prometheus/Grafana).
 
 ---
 
 ## Considerações Finais
 
-Este projeto demonstra a integração entre algoritmos genéticos, redes neurais e técnicas de engenharia de software, resultando em um sistema modular, escalável e focado em desempenho. O uso de Web Workers exemplifica boas práticas de frontend, evitando travamentos e oferecendo uma experiência de usuário mais responsiva.
-
-As abordagens apresentadas e o cuidado com observabilidade, testes e arquitetura sólida fornecem uma base para projetos futuros que queiram combinar inteligência artificial, otimização e web engineering de forma eficiente.
+O projeto demonstra a sinergia entre algoritmos genéticos, redes neurais e engenharia de software, aliando performance, modularidade e qualidade. O uso de Web Workers garante responsividade e bom UX, enquanto observabilidade, testes e CI/CD fornecem confiabilidade e mantenabilidade. O acompanhamento no Kanbanize assegurou organização e visibilidade no ciclo de desenvolvimento. A solução, assim, constitui uma base sólida para trabalhos futuros que desejem aplicar técnicas de IA e otimização a problemas combinatórios complexos.
