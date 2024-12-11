@@ -1,4 +1,4 @@
-# Projeto de Otimização e Análise Estatística de Sequências Numéricas via Algoritmos Genéticos e Redes Neurais
+# LotoAI - Modelagem de Padrões da Lotofácil com Algoritmos Evolutivos e Redes Neurais
 
 ## Índice
 
